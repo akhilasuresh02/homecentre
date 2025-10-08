@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HomeCentre - Catalogue</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      color: #093d39;
+    }
+
+    .card {
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 0.75rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      padding: 1rem;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+    }
+
+    .brand-bg {
+      background-color: #093d39;
+    }
+
+    .brand-bg:hover {
+      background-color: #062e2b;
+    }
+
+    #home-btn:hover {
+      background-color: #062e2b;
+    }
+
+    /* Modal styling */
+    .modal {
+      display: none; 
+      position: fixed; 
+      z-index: 50; 
+      left: 0; 
+      top: 0; 
+      width: 100%; 
+      height: 100%; 
+      overflow: auto; 
+      background-color: rgba(0,0,0,0.6);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 10% auto;
+      padding: 2rem;
+      border-radius: 0.75rem;
+      max-width: 500px;
+      text-align: center;
+      position: relative;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 0.5rem;
+      right: 1rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .modal img {
+      max-height: 300px;
+      object-fit: contain;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Background -->
+  <div style="position: fixed; inset: 0; z-index: -1;">
+    <img src="./2.jpeg" alt="" style="width:100vw; height:100vh; object-fit:cover; opacity:1;">
+  </div>
+
+  <!-- Header -->
+  <header class="bg-white shadow-md sticky top-0 z-20">
+    <nav class="container mx-auto flex justify-between items-center p-4">
+      <a href="index.html" class="flex items-center space-x-2">
+        <img src="images/logo.png" alt="HomeCentre Logo" class="h-20 w-auto">
+        <span class="text-2xl font-bold text-[#093d39]">HomeCentre</span>
+      </a>
+      <button id="home-btn" onclick="window.location.href='index.html'"
+        class="text-white px-4 py-2 rounded-lg shadow brand-bg transition">Home</button>
+    </nav>
+  </header>
+
+  <!-- Page Title -->
+  <section class="text-center mt-12">
+    <h2 class="text-4xl font-bold text-white drop-shadow-md">Explore Our Exclusive Collection</h2>
+    <p class="text-lg text-white mt-3 drop-shadow-sm">Modern Pots, Planters, and Lighting Ideas to Brighten Your Home</p>
+  </section>
+
+  <!-- Catalogue Grid -->
+  <main class="container mx-auto py-12 grid sm:grid-cols-2 md:grid-cols-3 gap-8">
+    <!-- Product Cards -->
+    <div class="card" onclick="openModal('images/Ceramic Planter Pot.jpg', 'Ceramic Planter Pot', '₹899')">
+      <img src="images/Ceramic Planter Pot.jpg" alt="Ceramic Planter Pot" class="w-full h-auto max-h-96 object-contain rounded-lg mb-4" />
+      <h3 class="text-xl font-semibold">Ceramic Planter Pot</h3>
+      <p class="text-gray-600 mt-1">₹899</p>
+    </div>
+
+    <div class="card" onclick="openModal('images/Contemporary Table Lamp.jpg', 'Contemporary Table Lamp', '₹1,599')">
+      <img src="images/Contemporary Table Lamp.jpg" alt="Contemporary Table Lamp" class="w-full h-auto max-h-96 object-contain rounded-lg mb-4" />
+      <h3 class="text-xl font-semibold">Contemporary Table Lamp</h3>
+      <p class="text-gray-600 mt-1">₹1,599</p>
+    </div>
+
+    <div class="card" onclick="openModal('images/Floor Lamps.jpg', 'Floor Lamp', '₹1,899')">
+      <img src="images/Floor Lamps.jpg" alt="Floor Lamp" class="w-full h-auto max-h-96 object-contain rounded-lg mb-4" />
+      <h3 class="text-xl font-semibold">Floor Lamp</h3>
+      <p class="text-gray-600 mt-1">₹1,899</p>
+    </div>
+
+    <div class="card" onclick="openModal('images/Glass Vase Planter.jpg', 'Glass Vase Planter', '₹749')">
+      <img src="images/Glass Vase Planter.jpg" alt="Glass Vase Planter" class="w-full h-auto max-h-96 object-contain rounded-lg mb-4" />
+      <h3 class="text-xl font-semibold">Glass Vase Planter</h3>
+      <p class="text-gray-600 mt-1">₹749</p>
+    </div>
+
+    <div class="card" onclick="openModal('images/Hanging Lights.jpg', 'Hanging Lights', '₹1,999')">
+      <img src="images/Hanging Lights.jpg" alt="Hanging Lights" class="w-full h-auto max-h-96 object-contain rounded-lg mb-4" />
+      <h3 class="text-xl font-semibold">Hanging Lights</h3>
+      <p class="text-gray-600 mt-1">₹1,999</p>
+    </div>
+
+    <div class="card" onclick="openModal('images/Hanging Metal Planter.jpg', 'Hanging Metal Planter', '₹1,299')">
+      <img src="images/Hanging Metal Planter.jpg" alt="Hanging Metal Planter" class="w-full h-auto max-h-96 object-contain rounded-lg mb-4" />
+      <h3 class="text-xl font-semibold">Hanging Metal Planter</h3>
+      <p class="text-gray-600 mt-1">₹1,299</p>
+    </div>
+
+    <div class="card" onclick="openModal('images/Metal Flower Plant Pots.jpg', 'Metal Flower Plant Pots', '₹999')">
+      <img src="images/Metal Flower Plant Pots.jpg" alt="Metal Flower Plant Pots" class="w-full h-auto max-h-96 object-contain rounded-lg mb-4" />
+      <h3 class="text-xl font-semibold">Metal Flower Plant Pots</h3>
+      <p class="text-gray-600 mt-1">₹999</p>
+    </div>
+
+    <div class="card" onclick="openModal('images/Pendant Ceiling Light.jpg', 'Pendant Ceiling Light', '₹2,099')">
+      <img src="images/Pendant Ceiling Light.jpg" alt="Pendant Ceiling Light" class="w-full h-auto max-h-96 object-contain rounded-lg mb-4" />
+      <h3 class="text-xl font-semibold">Pendant Ceiling Light</h3>
+      <p class="text-gray-600 mt-1">₹2,099</p>
+    </div>
+
+    <div class="card" onclick="openModal('images/Vintage Wall Lamp.jpg', 'Vintage Wall Lamp', '₹1,299')">
+      <img src="images/Vintage Wall Lamp.jpg" alt="Vintage Wall Lamp" class="w-full h-auto max-h-96 object-contain rounded-lg mb-4" />
+      <h3 class="text-xl font-semibold">Vintage Wall Lamp</h3>
+      <p class="text-gray-600 mt-1">₹1,299</p>
+    </div>
+  </main>
+
+  <!-- Modal -->
+  <div id="productModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <img id="modal-img" src="" alt="Product Image" />
+      <h3 id="modal-title" class="text-2xl font-bold mb-2"></h3>
+      <p id="modal-price" class="text-gray-600 mb-4"></p>
+      <button class="px-4 py-2 rounded-lg bg-[#093d39] text-white hover:bg-[#062e2b] transition">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-white text-black py-6 text-center">
+    <p>&copy; 2025 HomeCentre. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    function openModal(img, title, price) {
+      document.getElementById('modal-img').src = img;
+      document.getElementById('modal-title').textContent = title;
+      document.getElementById('modal-price').textContent = price;
+      document.getElementById('productModal').style.display = 'block';
+    }
+
+    function closeModal() {
+      document.getElementById('productModal').style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('productModal');
+      if (event.target == modal) modal.style.display = 'none';
+    }
+  </script>
+</body>
+</html>

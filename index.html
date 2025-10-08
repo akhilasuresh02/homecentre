@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DecorNest - Home Décor</title>
+  <!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Card styling */
+    .card {
+      padding: 1rem;
+      max-width: 300px;
+      margin: 0 auto;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Brand theme */
+    .brand {
+      color: #093d39;
+    }
+
+    .brand-bg {
+      background-color: #093d39;
+    }
+
+    /* CTA hover */
+    #cta-btn:hover {
+      background-color: #062e2b;
+      transform: scale(1.05);
+    }
+
+    /* Pseudo selector */
+    nav ul li:first-child a {
+      color: #093d39;
+    }
+
+    main {
+      flex: 1;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800" style="background-image: url('./2.jpeg'); background-size: cover; background-position: center; background-attachment: fixed;">
+
+  <!-- Header -->
+  <header class="bg-white shadow-md sticky top-0 z-20">
+    <nav class="container mx-auto flex justify-between items-center p-4">
+      <a href="index.html" class="flex items-center space-x-2">
+  <img src="images/logo.png" alt="HomeCentre Logo" class="h-20 w-auto">
+  <span class="text-2xl font-bold text-[#093d39]">HomeCentre</span>
+</a>
+      
+      <ul class="flex space-x-6 font-medium">
+        <li><a href="#" class="hover:text-[#093d39]">Pots and Planters</a></li>
+        <li><a href="#" class="hover:text-[#093d39]">Wall Decor</a></li>
+        <li><a href="#" class="hover:text-[#093d39]">Clocks</a></li>
+        <li><a href="#" class="hover:text-[#093d39]">Lighting</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="py-16 text-center">
+    <h2 class="text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg">
+      Style Your Home with Elegance
+    </h2>
+    <p class="mt-4 text-lg text-white max-w-2xl mx-auto drop-shadow-md">
+      Discover stunning décor pieces, modern furniture, and artistic designs to give your home a fresh look.
+    </p>
+    <button id="cta-btn" class="mt-6 px-8 py-3 rounded-lg shadow-lg transition font-semibold"
+      style="background-color: #FFF9E5; color: #093d39;">
+      Shop Now
+    </button>
+  </section>
+
+  <!-- Main Content -->
+  <main class="container mx-auto py-12 grid md:grid-cols-2 gap-8">
+    <!-- Article 1 -->
+<!-- Living Room Ideas -->
+<article class="card bg-white p-6 rounded-xl shadow">
+  <h3 class="text-2xl font-bold mb-2 brand">Top 5 Living Room Ideas</h3>
+  <p>Explore cozy and stylish living room setups that blend comfort with modern elegance.</p>
+  <a href="catalogue.html" class="brand font-medium hover:underline mt-3 inline-block">Read More →</a>
+</article>
+
+<!-- Wall Art Trends -->
+<article class="card bg-white p-6 rounded-xl shadow">
+  <h3 class="text-2xl font-bold mb-2 brand">Wall Art Trends 2025</h3>
+  <p>From abstract paintings to minimalistic frames, find the latest wall art ideas for your home.</p>
+  <a href="walldecor_clocks.html" class="brand font-medium hover:underline mt-3 inline-block">Read More →</a>
+</article>
+
+  </main>
+<!-- Footer -->
+<footer class="bg-white text-black py-6 text-center">
+  <!-- Decorative Canvas above footer text -->
+  <div class="flex justify-center mb-4">
+    <canvas id="footerCanvas" width="300" height="50" class="rounded-lg shadow-lg"></canvas>
+  </div>
+
+  <p style="font-family: 'Poppins', sans-serif; font-size: 18px;">
+    <i class="fa-solid fa-couch" style="color: #093d39; font-size: 24px; vertical-align: middle;"></i> 
+    &nbsp; &copy; 2025 HomeCentre. All Rights Reserved.
+  </p>
+</footer>
+
+<!-- Canvas Script -->
+<script>
+  const footerC = document.getElementById('footerCanvas');
+  const ctx = footerC.getContext('2d');
+
+  // Background rectangle
+  ctx.fillStyle = '#093d39';
+  ctx.fillRect(0, 0, footerC.width, footerC.height);
+
+  // Text in canvas
+  ctx.fillStyle = '#FFF9E5';
+  ctx.font = '16px Poppins';
+  ctx.fillText('Your home, your art.', 90, 32);
+</script>
+
+</body>
+</html>
