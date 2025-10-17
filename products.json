@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "name": "Ceramic Planter Pot",
+    "category": "Planter",
+    "price": 899,
+    "image": "images/Ceramic Planter Pot.jpg",
+    "description": "Elegant ceramic planter for indoor plants."
+  },
+  {
+    "id": 2,
+    "name": "Glass Vase Planter",
+    "category": "Planter",
+    "price": 749,
+    "image": "images/Glass Vase Planter.jpg",
+    "description": "Transparent glass vase for small plants and succulents."
+  },
+  {
+    "id": 3,
+    "name": "Hanging Metal Planter",
+    "category": "Planter",
+    "price": 1299,
+    "image": "images/Hanging Metal Planter.jpg",
+    "description": "Stylish hanging planter for balcony or living room."
+  },
+  {
+    "id": 4,
+    "name": "Metal Flower Plant Pots",
+    "category": "Planter",
+    "price": 999,
+    "image": "images/Metal Flower Plant Pots.jpg",
+    "description": "Decorative metal pots with vibrant colors."
+  },
+  {
+    "id": 5,
+    "name": "Floor Lamp",
+    "category": "Lighting",
+    "price": 1899,
+    "image": "images/Floor Lamps.jpg",
+    "description": "Modern floor lamp with adjustable brightness."
+  },
+  {
+    "id": 6,
+    "name": "Contemporary Table Lamp",
+    "category": "Lighting",
+    "price": 1599,
+    "image": "images/Contemporary Table Lamp.jpg",
+    "description": "Sleek table lamp for desk or bedside table."
+  },
+  {
+    "id": 7,
+    "name": "Hanging Lights",
+    "category": "Lighting",
+    "price": 1999,
+    "image": "images/Hanging Lights.jpg",
+    "description": "Elegant hanging lights for living room or dining area."
+  },
+  {
+    "id": 8,
+    "name": "Pendant Ceiling Light",
+    "category": "Lighting",
+    "price": 2099,
+    "image": "images/Pendant Ceiling Light.jpg",
+    "description": "Stylish pendant light for modern interiors."
+  },
+  {
+    "id": 9,
+    "name": "Vintage Wall Lamp",
+    "category": "Lighting",
+    "price": 1299,
+    "image": "images/Vintage Wall Lamp.jpg",
+    "description": "Classic wall-mounted lamp for cozy ambiance."
+  },
+  {
+    "id": 10,
+    "name": "Abstract Wall Art",
+    "category": "Wall Decor",
+    "price": 1299,
+    "image": "images/Abstract Wall Art.jpg",
+    "description": "Colorful abstract wall art for modern homes."
+  }
+]
