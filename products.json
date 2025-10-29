@@ -1,82 +1,122 @@
 [
   {
     "id": 1,
-    "name": "Ceramic Planter Pot",
-    "category": "Planter",
-    "price": 899,
-    "image": "images/Ceramic Planter Pot.jpg",
-    "description": "Elegant ceramic planter for indoor plants."
+    "name": "Abstract Wall Art",
+    "category": "Wall Decor",
+    "price": "₹1,299",
+    "description": "A modern abstract wall art piece to add elegance to your living space.",
+    "image": "images/Abstract Wall Art.jpg"
   },
   {
     "id": 2,
-    "name": "Glass Vase Planter",
-    "category": "Planter",
-    "price": 749,
-    "image": "images/Glass Vase Planter.jpg",
-    "description": "Transparent glass vase for small plants and succulents."
+    "name": "Minimalist Frame",
+    "category": "Wall Decor",
+    "price": "₹899",
+    "description": "Minimalist wall frame with soft tones for a clean, artistic look.",
+    "image": "images/Minimalist Frame.jpg"
   },
   {
     "id": 3,
-    "name": "Hanging Metal Planter",
-    "category": "Planter",
-    "price": 1299,
-    "image": "images/Hanging Metal Planter.jpg",
-    "description": "Stylish hanging planter for balcony or living room."
+    "name": "Modern Wall Art",
+    "category": "Wall Decor",
+    "price": "₹1,499",
+    "description": "Contemporary wall art for modern homes and office walls.",
+    "image": "images/Modern Wall Art.jpg"
   },
   {
     "id": 4,
-    "name": "Metal Flower Plant Pots",
-    "category": "Planter",
-    "price": 999,
-    "image": "images/Metal Flower Plant Pots.jpg",
-    "description": "Decorative metal pots with vibrant colors."
+    "name": "Vintage Wall Clock",
+    "category": "Clocks",
+    "price": "₹1,299",
+    "description": "Elegant vintage-style wall clock with antique design.",
+    "image": "images/Vintage Wall Clock.jpg"
   },
   {
     "id": 5,
-    "name": "Floor Lamp",
-    "category": "Lighting",
-    "price": 1899,
-    "image": "images/Floor Lamps.jpg",
-    "description": "Modern floor lamp with adjustable brightness."
+    "name": "Modern Table Clock",
+    "category": "Clocks",
+    "price": "₹899",
+    "description": "Sleek and stylish modern table clock for bedrooms or offices.",
+    "image": "images/Modern Table Clock.jpg"
   },
   {
     "id": 6,
-    "name": "Contemporary Table Lamp",
-    "category": "Lighting",
-    "price": 1599,
-    "image": "images/Contemporary Table Lamp.jpg",
-    "description": "Sleek table lamp for desk or bedside table."
+    "name": "Contemporary Wall Clock",
+    "category": "Clocks",
+    "price": "₹1,499",
+    "description": "Contemporary wall clock design that blends with any decor.",
+    "image": "images/Contemporary Wall Clock.jpg"
   },
   {
     "id": 7,
-    "name": "Hanging Lights",
-    "category": "Lighting",
-    "price": 1999,
-    "image": "images/Hanging Lights.jpg",
-    "description": "Elegant hanging lights for living room or dining area."
+    "name": "Ceramic Planter Pot",
+    "category": "Pots and Planters",
+    "price": "₹799",
+    "description": "Durable ceramic planter pot with glazed finish, ideal for indoor plants.",
+    "image": "images/Ceramic Planter Pot.jpg"
   },
   {
     "id": 8,
-    "name": "Pendant Ceiling Light",
-    "category": "Lighting",
-    "price": 2099,
-    "image": "images/Pendant Ceiling Light.jpg",
-    "description": "Stylish pendant light for modern interiors."
+    "name": "Glass Vase Planter",
+    "category": "Pots and Planters",
+    "price": "₹999",
+    "description": "Transparent glass vase planter perfect for fresh or artificial flowers.",
+    "image": "images/Glass Vase Planter.jpg"
   },
   {
     "id": 9,
-    "name": "Vintage Wall Lamp",
-    "category": "Lighting",
-    "price": 1299,
-    "image": "images/Vintage Wall Lamp.jpg",
-    "description": "Classic wall-mounted lamp for cozy ambiance."
+    "name": "Hanging Metal Planter",
+    "category": "Pots and Planters",
+    "price": "₹1,199",
+    "description": "Stylish hanging metal planter ideal for balconies or patios.",
+    "image": "images/Hanging Metal Planter.jpg"
   },
   {
     "id": 10,
-    "name": "Abstract Wall Art",
-    "category": "Wall Decor",
-    "price": 1299,
-    "image": "images/Abstract Wall Art.jpg",
-    "description": "Colorful abstract wall art for modern homes."
+    "name": "Metal Flower Plant Pots",
+    "category": "Pots and Planters",
+    "price": "₹1,299",
+    "description": "Set of 2 decorative metal pots for both indoor and outdoor use.",
+    "image": "images/Metal Flower Plant Pots.jpg"
+  },
+  {
+    "id": 11,
+    "name": "Contemporary Table Lamp",
+    "category": "Lighting",
+    "price": "₹1,499",
+    "description": "Soft ambient light with a modern contemporary design.",
+    "image": "images/Contemporary Table Lamp.jpg"
+  },
+  {
+    "id": 12,
+    "name": "Floor Lamp",
+    "category": "Lighting",
+    "price": "₹2,499",
+    "description": "Tall and elegant floor lamp that enhances the beauty of your room.",
+    "image": "images/Floor Lamps.jpg"
+  },
+  {
+    "id": 13,
+    "name": "Hanging Lights",
+    "category": "Lighting",
+    "price": "₹1,999",
+    "description": "Beautiful hanging lights that add warmth and style to any space.",
+    "image": "images/Hanging Lights.jpg"
+  },
+  {
+    "id": 14,
+    "name": "Pendant Ceiling Light",
+    "category": "Lighting",
+    "price": "₹2,199",
+    "description": "Elegant pendant ceiling light to brighten your interiors.",
+    "image": "images/Pendant Ceiling Light.jpg"
+  },
+  {
+    "id": 15,
+    "name": "Vintage Wall Lamp",
+    "category": "Lighting",
+    "price": "₹1,799",
+    "description": "Antique-style wall lamp perfect for classic interiors.",
+    "image": "images/Vintage Wall Lamp.jpg"
   }
 ]

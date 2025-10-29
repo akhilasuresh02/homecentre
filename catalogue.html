@@ -3,27 +3,47 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HomeCentre - Catalogue</title>
+  <title>HomeCentre Catalogue</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
+    /* ---------- Base Styles ---------- */
     body {
       font-family: "Segoe UI", sans-serif;
+      background-image: url('./2.jpeg');
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-color: #f8f8f8;
       color: #093d39;
+      transition: background-color 0.5s ease, color 0.5s ease;
     }
 
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #f0f0f0;
+    }
+
+    /* ---------- Card Styles ---------- */
     .card {
       background-color: rgba(255, 255, 255, 0.95);
       border-radius: 0.75rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       padding: 1rem;
       text-align: center;
-      cursor: pointer;
+      max-width: 320px;
+      margin: auto;
     }
 
     .card:hover {
       transform: translateY(-5px);
       box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+    }
+
+    .card img {
+      max-height: 240px;
+      object-fit: contain;
     }
 
     .brand-bg {
@@ -34,175 +54,183 @@
       background-color: #062e2b;
     }
 
-    #home-btn:hover {
-      background-color: #062e2b;
+    section {
+      margin-bottom: 4rem;
     }
 
-    /* Modal styling */
-    .modal {
-      display: none; 
-      position: fixed; 
-      z-index: 50; 
-      left: 0; 
-      top: 0; 
-      width: 100%; 
-      height: 100%; 
-      overflow: auto; 
-      background-color: rgba(0,0,0,0.6);
+    .section-title {
+      text-align: left;
+      margin-left: 2.5rem;
     }
 
-    .modal-content {
-      background-color: #fff;
-      margin: 10% auto;
-      padding: 2rem;
-      border-radius: 0.75rem;
-      max-width: 500px;
-      text-align: center;
-      position: relative;
+    @media (max-width: 768px) {
+      .section-title {
+        margin-left: 1rem;
+      }
     }
 
-    .close-btn {
-      position: absolute;
-      top: 0.5rem;
-      right: 1rem;
-      font-size: 1.5rem;
-      font-weight: bold;
-      cursor: pointer;
+    /* ---------- Updated Input & Select Styles ---------- */
+    input, select {
+      color: #000000 !important; 
+      background-color: #ffffff !important;
+      font-weight: 500;
+      border: 1px solid #ccc;
     }
 
-    .modal img {
-      max-height: 300px;
-      object-fit: contain;
-      margin-bottom: 1rem;
+    /* Dark mode keeps input readable */
+    .dark-mode input, .dark-mode select {
+      color: #000000 !important;
+      background-color: #ffffff !important;
+      font-weight: 500;
+      border: 1px solid #333333;
+    }
+
+    /* ---------- Dropdown Option Styling ---------- */
+    select option {
+      color: #000000;
+      background-color: #ffffff;
+    }
+
+    .dark-mode select option {
+      color: #000000;
+      background-color: #ffffff;
     }
   </style>
 </head>
 
-<body class="relative">
-
-  <!-- Fixed Background Image -->
-  <div class="fixed inset-0 z-0">
-    <img src="./2.jpeg" alt="Background" class="w-full h-full object-cover">
-  </div>
-
+<body>
   <!-- Header -->
-  <header class="bg-white shadow-md sticky top-0 z-10">
+  <header class="bg-white shadow-md sticky top-0 z-20">
     <nav class="container mx-auto flex justify-between items-center p-4">
       <a href="index.html" class="flex items-center space-x-2">
         <img src="images/logo.png" alt="HomeCentre Logo" class="h-20 w-auto">
         <span class="text-2xl font-bold text-[#093d39]">HomeCentre</span>
       </a>
-      <button id="home-btn" onclick="window.location.href='index.html'"
+      <button onclick="window.location.href='index.html'"
         class="text-white px-4 py-2 rounded-lg shadow brand-bg transition">Home</button>
     </nav>
   </header>
 
-  <!-- Page Title -->
-  <section class="text-center mt-12 z-10 relative">
+  <!-- Hero Section -->
+  <section class="text-center mt-10">
     <h2 class="text-4xl font-bold text-white drop-shadow-md">Explore Our Exclusive Collection</h2>
-    <p class="text-lg text-white mt-3 drop-shadow-sm">Modern Pots, Planters, and Lighting Ideas to Brighten Your Home</p>
+    <p class="text-lg text-white mt-3 drop-shadow-sm">Discover stylish wall art, clocks, lighting, and planters for every home</p>
   </section>
 
-  <!-- Lightings Section -->
-  <section class="container mx-auto py-12 z-10 relative">
-    <h3 class="text-3xl font-bold text-white mb-6">Lighting Collection</h3>
-    <main class="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
-      <!-- Lighting Products -->
-      <div class="card" onclick="openModal('images/Contemporary Table Lamp.jpg', 'Contemporary Table Lamp', '₹1,599')">
-        <img src="images/Contemporary Table Lamp.jpg" alt="Contemporary Table Lamp" class="w-full h-auto max-h-96 object-contain rounded-lg mb-4" />
-        <h3 class="text-xl font-semibold">Contemporary Table Lamp</h3>
-        <p class="text-gray-600 mt-1">₹1,599</p>
-      </div>
+  <!-- Search + Filter + Theme Toggle -->
+  <div class="flex flex-wrap justify-center gap-4 mt-10">
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="Search products..."
+      class="px-4 py-2 rounded-lg shadow w-64 focus:outline-none"
+    >
 
-      <div class="card" onclick="openModal('images/Floor Lamps.jpg', 'Floor Lamp', '₹1,899')">
-        <img src="images/Floor Lamps.jpg" alt="Floor Lamp" class="w-full h-auto max-h-96 object-contain rounded-lg mb-4" />
-        <h3 class="text-xl font-semibold">Floor Lamp</h3>
-        <p class="text-gray-600 mt-1">₹1,899</p>
-      </div>
+    <select
+      id="categoryFilter"
+      class="px-4 py-2 rounded-lg shadow focus:outline-none"
+    >
+      <option value="All">All categories</option>
+      <option value="Pots and Planters">Pots and Planters</option>
+      <option value="Wall Decor">Wall Decor</option>
+      <option value="Clocks">Clocks</option>
+      <option value="Lighting">Lighting</option>
+    </select>
 
-      <div class="card" onclick="openModal('images/Hanging Lights.jpg', 'Hanging Lights', '₹1,999')">
-        <img src="images/Hanging Lights.jpg" alt="Hanging Lights" class="w-full h-auto max-h-96 object-contain rounded-lg mb-4" />
-        <h3 class="text-xl font-semibold">Hanging Lights</h3>
-        <p class="text-gray-600 mt-1">₹1,999</p>
-      </div>
-
-      <div class="card" onclick="openModal('images/Pendant Ceiling Light.jpg', 'Pendant Ceiling Light', '₹2,099')">
-        <img src="images/Pendant Ceiling Light.jpg" alt="Pendant Ceiling Light" class="w-full h-auto max-h-96 object-contain rounded-lg mb-4" />
-        <h3 class="text-xl font-semibold">Pendant Ceiling Light</h3>
-        <p class="text-gray-600 mt-1">₹2,099</p>
-      </div>
-
-      <div class="card" onclick="openModal('images/Vintage Wall Lamp.jpg', 'Vintage Wall Lamp', '₹1,299')">
-        <img src="images/Vintage Wall Lamp.jpg" alt="Vintage Wall Lamp" class="w-full h-auto max-h-96 object-contain rounded-lg mb-4" />
-        <h3 class="text-xl font-semibold">Vintage Wall Lamp</h3>
-        <p class="text-gray-600 mt-1">₹1,299</p>
-      </div>
-    </main>
-  </section>
-
-  <!-- Pots & Planters Section -->
-  <section class="container mx-auto py-12 z-10 relative">
-    <h3 class="text-3xl font-bold text-white mb-6">Pots & Planters</h3>
-    <main class="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
-      <!-- Pots & Planters Products -->
-      <div class="card" onclick="openModal('images/Ceramic Planter Pot.jpg', 'Ceramic Planter Pot', '₹899')">
-        <img src="images/Ceramic Planter Pot.jpg" alt="Ceramic Planter Pot" class="w-full h-auto max-h-96 object-contain rounded-lg mb-4" />
-        <h3 class="text-xl font-semibold">Ceramic Planter Pot</h3>
-        <p class="text-gray-600 mt-1">₹899</p>
-      </div>
-
-      <div class="card" onclick="openModal('images/Glass Vase Planter.jpg', 'Glass Vase Planter', '₹749')">
-        <img src="images/Glass Vase Planter.jpg" alt="Glass Vase Planter" class="w-full h-auto max-h-96 object-contain rounded-lg mb-4" />
-        <h3 class="text-xl font-semibold">Glass Vase Planter</h3>
-        <p class="text-gray-600 mt-1">₹749</p>
-      </div>
-
-      <div class="card" onclick="openModal('images/Hanging Metal Planter.jpg', 'Hanging Metal Planter', '₹1,299')">
-        <img src="images/Hanging Metal Planter.jpg" alt="Hanging Metal Planter" class="w-full h-auto max-h-96 object-contain rounded-lg mb-4" />
-        <h3 class="text-xl font-semibold">Hanging Metal Planter</h3>
-        <p class="text-gray-600 mt-1">₹1,299</p>
-      </div>
-
-      <div class="card" onclick="openModal('images/Metal Flower Plant Pots.jpg', 'Metal Flower Plant Pots', '₹999')">
-        <img src="images/Metal Flower Plant Pots.jpg" alt="Metal Flower Plant Pots" class="w-full h-auto max-h-96 object-contain rounded-lg mb-4" />
-        <h3 class="text-xl font-semibold">Metal Flower Plant Pots</h3>
-        <p class="text-gray-600 mt-1">₹999</p>
-      </div>
-    </main>
-  </section>
-
-  <!-- Modal -->
-  <div id="productModal" class="modal">
-    <div class="modal-content">
-      <span class="close-btn" onclick="closeModal()">&times;</span>
-      <img id="modal-img" src="" alt="Product Image" />
-      <h3 id="modal-title" class="text-2xl font-bold mb-2"></h3>
-      <p id="modal-price" class="text-gray-600 mb-4"></p>
-      <button class="px-4 py-2 rounded-lg bg-[#093d39] text-white hover:bg-[#062e2b] transition">Add to Cart</button>
-    </div>
+    <button id="themeToggle" class="px-4 py-2 rounded-lg shadow bg-[#093d39] text-white hover:bg-[#062e2b]">
+      Toggle Theme
+    </button>
   </div>
 
+  <!-- Catalogue Container -->
+  <main id="catalogue-container" class="container mx-auto py-12 space-y-16">
+    <!-- Dynamic content loads here -->
+  </main>
+
   <!-- Footer -->
-  <footer class="bg-white text-black py-6 text-center z-10 relative">
+  <footer class="bg-white text-black py-6 text-center">
     <p>&copy; 2025 HomeCentre. All Rights Reserved.</p>
   </footer>
 
   <script>
-    function openModal(img, title, price) {
-      document.getElementById('modal-img').src = img;
-      document.getElementById('modal-title').textContent = title;
-      document.getElementById('modal-price').textContent = price;
-      document.getElementById('productModal').style.display = 'block';
+    // ---------- Theme toggle with persistence ----------
+    const body = document.body;
+    const themeToggle = document.getElementById('themeToggle');
+
+    if (localStorage.getItem('theme') === 'dark') {
+      body.classList.add('dark-mode');
     }
 
-    function closeModal() {
-      document.getElementById('productModal').style.display = 'none';
+    themeToggle.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
+    });
+
+    // ---------- Fetch and Display Products ----------
+    let allProducts = [];
+
+    async function loadProducts() {
+      try {
+        const res = await fetch('https://raw.githubusercontent.com/akhilasuresh02/homecentre-api/refs/heads/main/products.json');
+        allProducts = await res.json();
+        displayProducts(allProducts);
+      } catch (error) {
+        console.error('Error loading products:', error);
+        document.getElementById('catalogue-container').innerHTML =
+          '<p class="text-white text-center text-lg">Failed to load products. Please try again later.</p>';
+      }
     }
 
-    window.onclick = function(event) {
-      const modal = document.getElementById('productModal');
-      if (event.target == modal) modal.style.display = 'none';
+    function displayProducts(products) {
+      const container = document.getElementById('catalogue-container');
+      container.innerHTML = '';
+
+      const categories = ['Pots and Planters', 'Wall Decor', 'Clocks', 'Lighting'];
+      categories.forEach(category => {
+        const section = document.createElement('section');
+        section.innerHTML = `
+          <h3 class="text-3xl font-bold text-white mb-8 section-title">${category}</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-6" id="${category.replace(/\s+/g, '-').toLowerCase()}"></div>
+        `;
+        container.appendChild(section);
+
+        const sectionGrid = section.querySelector('div');
+        const items = products.filter(p => p.category === category);
+        items.forEach(item => {
+          const card = document.createElement('div');
+          card.className = 'card';
+          card.innerHTML = `
+            <img src="${item.image}" alt="${item.name}" class="w-full h-auto object-contain rounded-lg mb-3" />
+            <h3 class="text-lg font-semibold">${item.name}</h3>
+            <p class="text-gray-600 mt-1">${item.price}</p>
+            <button class="mt-2 px-3 py-1.5 rounded-lg bg-[#093d39] text-white hover:bg-[#062e2b] transition text-sm">Add to Cart</button>
+          `;
+          sectionGrid.appendChild(card);
+        });
+      });
     }
+
+    // ---------- Search and Filter ----------
+    const searchInput = document.getElementById('searchInput');
+    const categoryFilter = document.getElementById('categoryFilter');
+
+    searchInput.addEventListener('input', applyFilters);
+    categoryFilter.addEventListener('change', applyFilters);
+
+    function applyFilters() {
+      const searchTerm = searchInput.value.toLowerCase();
+      const selectedCategory = categoryFilter.value;
+
+      const filtered = allProducts.filter(p => {
+        const matchesSearch = p.name.toLowerCase().includes(searchTerm);
+        const matchesCategory = selectedCategory === 'All' || p.category === selectedCategory;
+        return matchesSearch && matchesCategory;
+      });
+
+      displayProducts(filtered);
+    }
+
+    loadProducts();
   </script>
 </body>
 </html>

@@ -4,23 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HomeCentre - Home Décor</title>
-  <!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
     body {
-      font-family: "Segoe UI", sans-serif;
+      font-family: 'Poppins', sans-serif;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
       margin: 0;
-      font-family: 'Poppins', sans-serif;
     }
 
     /* Card styling */
@@ -43,19 +43,21 @@
       color: #093d39;
     }
 
-    .brand-bg {
-      background-color: #093d39;
-    }
-
     /* CTA hover */
     #cta-btn:hover {
       background-color: #062e2b;
       transform: scale(1.05);
     }
 
-    /* Pseudo selector */
-    nav ul li:first-child a {
+    /* Navigation styling */
+    nav ul li span {
+      cursor: default;
+      transition: all 0.3s ease;
+    }
+
+    nav ul li span:hover {
       color: #093d39;
+      font-weight: 700;
     }
 
     main {
@@ -70,18 +72,17 @@
   <header class="bg-white shadow-md sticky top-0 z-20">
     <nav class="container mx-auto flex justify-between items-center p-4">
       <a href="index.html" class="flex items-center space-x-2">
-  <img src="images/logo.png" alt="HomeCentre Logo" class="h-20 w-auto">
-  <span class="text-2xl font-bold text-[#093d39]">HomeCentre</span>
-</a>
-      
+        <img src="images/logo.png" alt="HomeCentre Logo" class="h-20 w-auto">
+        <span class="text-2xl font-bold text-[#093d39]">HomeCentre</span>
+      </a>
 
-      <ul class="flex space-x-6 font-medium">
-  <li><a href="catalogue.html" class="hover:text-[#093d39]">Pots and Planters</a></li>
-  <li><a href="walldecor_clocks.html" class="hover:text-[#093d39]">Wall Decor</a></li>
-  <li><a href="walldecor_clocks.html" class="hover:text-[#093d39]">Clocks</a></li>
-  <li><a href="catalogue.html" class="hover:text-[#093d39]">Lighting</a></li>
-</ul>
-
+      <!-- Navigation labels  -->
+      <ul class="flex space-x-6 font-medium text-gray-700">
+        <li><span>Pots and Planters</span></li>
+        <li><span>Wall Decor</span></li>
+        <li><span>Clocks</span></li>
+        <li><span>Lighting</span></li>
+      </ul>
     </nav>
   </header>
 
@@ -93,70 +94,70 @@
     <p class="mt-4 text-lg text-white max-w-2xl mx-auto drop-shadow-md">
       Discover stunning décor pieces, modern furniture, and artistic designs to give your home a fresh look.
     </p>
-    <button id="cta-btn" class="mt-6 px-8 py-3 rounded-lg shadow-lg transition font-semibold"
-      style="background-color: #FFF9E5; color: #093d39;">
-      Shop Now
-    </button>
+    <a href="catalogue.html">
+      <button id="cta-btn" class="mt-6 px-8 py-3 rounded-lg shadow-lg transition font-semibold"
+        style="background-color: #FFF9E5; color: #093d39;">
+        Shop Now
+      </button>
+    </a>
   </section>
 
   <!-- Main Content -->
   <main class="container mx-auto py-12 grid md:grid-cols-2 gap-8">
     <!-- Article 1 -->
-<!-- Living Room Ideas -->
-<article class="card bg-white p-6 rounded-xl shadow">
-  <h3 class="text-2xl font-bold mb-2 brand">Living Room Ideas</h3>
-  <p>Explore cozy and stylish living room setups that blend comfort with modern elegance.</p>
-  <a href="catalogue.html" class="brand font-medium hover:underline mt-3 inline-block">Explore →</a>
-</article>
+    <article class="card bg-white p-6 rounded-xl shadow">
+      <h3 class="text-2xl font-bold mb-2 brand">Living Room Ideas</h3>
+      <p>Explore cozy and stylish living room setups that blend comfort with modern elegance.</p>
+      <a href="catalogue.html" class="brand font-medium hover:underline mt-3 inline-block">Explore →</a>
+    </article>
 
-<!-- Wall Art Trends -->
-<article class="card bg-white p-6 rounded-xl shadow">
-  <h3 class="text-2xl font-bold mb-2 brand">Wall Art Trends </h3>
-  <p>From abstract paintings to minimalistic frames, find the latest wall art ideas for your home.</p>
-  <a href="walldecor_clocks.html" class="brand font-medium hover:underline mt-3 inline-block">Explore →</a>
-</article>
-
+    <!-- Wall Art Trends -->
+    <article class="card bg-white p-6 rounded-xl shadow">
+      <h3 class="text-2xl font-bold mb-2 brand">Wall Art Trends</h3>
+      <p>From abstract paintings to minimalistic frames, find the latest wall art ideas for your home.</p>
+      <a href="catalogue.html" class="brand font-medium hover:underline mt-3 inline-block">Explore →</a>
+    </article>
   </main>
 
   <!-- Feedback Section -->
-<section class="py-16 bg-amber-50 text-center">
-  <h2 class="text-3xl font-semibold text-amber-700 mb-4">We’d Love to Hear From You!</h2>
-  <p class="text-gray-700 max-w-xl mx-auto mb-6">
-    Share your experience with HomeCentre and help us make your home shopping even better.
-  </p>
-  <a href="feedback.html" 
-     class="bg-amber-700 text-white px-6 py-2 rounded-lg hover:bg-amber-800 transition duration-300">
-    Go to Feedback Form
-  </a>
-</section>
+  <section class="py-16 bg-amber-50 text-center">
+    <h2 class="text-3xl font-semibold text-amber-700 mb-4">We’d Love to Hear From You!</h2>
+    <p class="text-gray-700 max-w-xl mx-auto mb-6">
+      Share your experience with HomeCentre and help us make your home shopping even better.
+    </p>
+    <a href="feedback.html" 
+       class="bg-amber-700 text-white px-6 py-2 rounded-lg hover:bg-amber-800 transition duration-300">
+      Go to Feedback Form
+    </a>
+  </section>
 
-<!-- Footer -->
-<footer class="bg-white text-black py-6 text-center">
-  <!-- Decorative Canvas above footer text -->
-  <div class="flex justify-center mb-4">
-    <canvas id="footerCanvas" width="300" height="50" class="rounded-lg shadow-lg"></canvas>
-  </div>
+  <!-- Footer -->
+  <footer class="bg-white text-black py-6 text-center">
+    <!-- Decorative Canvas above footer text -->
+    <div class="flex justify-center mb-4">
+      <canvas id="footerCanvas" width="300" height="50" class="rounded-lg shadow-lg"></canvas>
+    </div>
 
-  <p style="font-family: 'Poppins', sans-serif; font-size: 18px;">
-    <i class="fa-solid fa-couch" style="color: #093d39; font-size: 24px; vertical-align: middle;"></i> 
-    &nbsp; &copy; 2025 HomeCentre. All Rights Reserved.
-  </p>
-</footer>
+    <p style="font-family: 'Poppins', sans-serif; font-size: 18px;">
+      <i class="fa-solid fa-couch" style="color: #093d39; font-size: 24px; vertical-align: middle;"></i> 
+      &nbsp; &copy; 2025 HomeCentre. All Rights Reserved.
+    </p>
+  </footer>
 
-<!-- Canvas Script -->
-<script>
-  const footerC = document.getElementById('footerCanvas');
-  const ctx = footerC.getContext('2d');
+  <!-- Canvas Script -->
+  <script>
+    const footerC = document.getElementById('footerCanvas');
+    const ctx = footerC.getContext('2d');
 
-  // Background rectangle
-  ctx.fillStyle = '#093d39';
-  ctx.fillRect(0, 0, footerC.width, footerC.height);
+    // Background rectangle
+    ctx.fillStyle = '#093d39';
+    ctx.fillRect(0, 0, footerC.width, footerC.height);
 
-  // Text in canvas
-  ctx.fillStyle = '#FFF9E5';
-  ctx.font = '16px Poppins';
-  ctx.fillText('Your home, your art.', 90, 32);
-</script>
+    // Text in canvas
+    ctx.fillStyle = '#FFF9E5';
+    ctx.font = '16px Poppins';
+    ctx.fillText('Your home, your art.', 90, 32);
+  </script>
 
 </body>
 </html>
