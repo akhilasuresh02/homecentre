@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HomeCentre Catalogue</title>
   <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
     /* ---------- Base Styles ---------- */
     body {
@@ -16,12 +17,14 @@
       background-attachment: fixed;
       background-color: #f8f8f8;
       color: #093d39;
-      transition: background-color 0.5s ease, color 0.5s ease;
+      transition: background-color 0.4s ease, color 0.4s ease;
     }
 
-    .dark-mode {
-      background-color: #1a1a1a;
+    /* Keep the same background for dark mode */
+    body.dark-mode {
+      background-color: rgba(15, 24, 24, 0.35); /* subtle overlay */
       color: #f0f0f0;
+      background-image: url('./2.jpeg');
     }
 
     /* ---------- Card Styles ---------- */
@@ -29,72 +32,77 @@
       background-color: rgba(255, 255, 255, 0.95);
       border-radius: 0.75rem;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.4s ease, color 0.4s ease;
       padding: 1rem;
       text-align: center;
       max-width: 320px;
       margin: auto;
+      color: #093d39;
+      cursor: grab;
+    }
+
+    /* Dragging visuals */
+    .card.dragging {
+      opacity: 0.6;
+      transform: scale(0.98);
+      cursor: grabbing;
+      outline: 2px dashed rgba(9,61,57,0.45);
+    }
+
+    /* Dark Mode Cards */
+    .dark-mode .card {
+      background-color: rgba(34, 34, 34, 0.9);
+      color: #f5f5f5;
+      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.03);
     }
 
     .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    .dark-mode .card:hover {
+      box-shadow: 0 8px 20px rgba(255,255,255,0.04);
     }
 
     .card img {
-      max-height: 240px;
+      max-height: 220px;
       object-fit: contain;
     }
 
-    .brand-bg {
-      background-color: #093d39;
-    }
+    .brand-bg { background-color: #093d39; }
+    .brand-bg:hover { background-color: #062e2b; }
 
-    .brand-bg:hover {
-      background-color: #062e2b;
-    }
-
-    section {
-      margin-bottom: 4rem;
-    }
+    section { margin-bottom: 3.5rem; }
 
     .section-title {
       text-align: left;
       margin-left: 2.5rem;
+      color: #ffffff;
     }
 
     @media (max-width: 768px) {
-      .section-title {
-        margin-left: 1rem;
-      }
+      .section-title { margin-left: 1rem; }
     }
 
-    /* ---------- Updated Input & Select Styles ---------- */
+    /* Inputs & select - keep readable */
     input, select {
-      color: #000000 !important; 
+      color: #000000 !important;
       background-color: #ffffff !important;
       font-weight: 500;
       border: 1px solid #ccc;
     }
 
-    /* Dark mode keeps input readable */
     .dark-mode input, .dark-mode select {
       color: #000000 !important;
       background-color: #ffffff !important;
-      font-weight: 500;
       border: 1px solid #333333;
     }
 
-    /* ---------- Dropdown Option Styling ---------- */
-    select option {
-      color: #000000;
-      background-color: #ffffff;
-    }
+    select option { color: #000000; background-color: #ffffff; }
 
-    .dark-mode select option {
-      color: #000000;
-      background-color: #ffffff;
-    }
+    /* small helper message */
+    .hint { font-size: 0.9rem; color: rgba(255,255,255,0.9); text-align:center; margin-top:0.5rem; }
   </style>
 </head>
 
@@ -103,47 +111,39 @@
   <header class="bg-white shadow-md sticky top-0 z-20">
     <nav class="container mx-auto flex justify-between items-center p-4">
       <a href="index.html" class="flex items-center space-x-2">
-        <img src="images/logo.png" alt="HomeCentre Logo" class="h-20 w-auto">
+        <img src="images/logo.png" alt="HomeCentre Logo" class="h-16 w-auto">
         <span class="text-2xl font-bold text-[#093d39]">HomeCentre</span>
       </a>
-      <button onclick="window.location.href='index.html'"
-        class="text-white px-4 py-2 rounded-lg shadow brand-bg transition">Home</button>
+
+      <!-- Theme Toggle Button -->
+      <button id="themeToggle" class="px-4 py-2 rounded-lg shadow bg-[#093d39] text-white hover:bg-[#062e2b]">
+        Toggle Theme
+      </button>
     </nav>
   </header>
 
   <!-- Hero Section -->
   <section class="text-center mt-10">
     <h2 class="text-4xl font-bold text-white drop-shadow-md">Explore Our Exclusive Collection</h2>
-    <p class="text-lg text-white mt-3 drop-shadow-sm">Discover stylish wall art, clocks, lighting, and planters for every home</p>
+    <p class="text-lg text-white mt-3 drop-shadow-sm">
+      Discover stylish wall art, clocks, lighting, and planters for every home
+    </p>
   </section>
 
-  <!-- Search + Filter + Theme Toggle -->
-  <div class="flex flex-wrap justify-center gap-4 mt-10">
-    <input
-      type="text"
-      id="searchInput"
-      placeholder="Search products..."
-      class="px-4 py-2 rounded-lg shadow w-64 focus:outline-none"
-    >
-
-    <select
-      id="categoryFilter"
-      class="px-4 py-2 rounded-lg shadow focus:outline-none"
-    >
+  <!-- Search + Filter -->
+  <div class="flex flex-wrap justify-center gap-4 mt-8">
+    <input type="text" id="searchInput" placeholder="Search products..." class="px-4 py-2 rounded-lg shadow w-64 focus:outline-none" />
+    <select id="categoryFilter" class="px-4 py-2 rounded-lg shadow focus:outline-none">
       <option value="All">All categories</option>
       <option value="Pots and Planters">Pots and Planters</option>
       <option value="Wall Decor">Wall Decor</option>
       <option value="Clocks">Clocks</option>
       <option value="Lighting">Lighting</option>
     </select>
-
-    <button id="themeToggle" class="px-4 py-2 rounded-lg shadow bg-[#093d39] text-white hover:bg-[#062e2b]">
-      Toggle Theme
-    </button>
   </div>
 
   <!-- Catalogue Container -->
-  <main id="catalogue-container" class="container mx-auto py-12 space-y-16">
+  <main id="catalogue-container" class="container mx-auto py-12 space-y-12">
     <!-- Dynamic content loads here -->
   </main>
 
@@ -153,20 +153,25 @@
   </footer>
 
   <script>
-    // ---------- Theme toggle with persistence ----------
+    /* -------------------------
+       Theme Toggle (localStorage)
+       ------------------------- */
     const body = document.body;
     const themeToggle = document.getElementById('themeToggle');
-
-    if (localStorage.getItem('theme') === 'dark') {
-      body.classList.add('dark-mode');
-    }
-
+    if (localStorage.getItem('theme') === 'dark') body.classList.add('dark-mode');
     themeToggle.addEventListener('click', () => {
       body.classList.toggle('dark-mode');
       localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
     });
 
-    // ---------- Fetch and Display Products ----------
+    /* -------------------------
+       Utilities
+       ------------------------- */
+    const slug = str => str.toLowerCase().replace(/\s+/g, '-');
+
+    /* -------------------------
+       Data + Rendering
+       ------------------------- */
     let allProducts = [];
 
     async function loadProducts() {
@@ -174,8 +179,8 @@
         const res = await fetch('https://raw.githubusercontent.com/akhilasuresh02/homecentre-api/refs/heads/main/products.json');
         allProducts = await res.json();
         displayProducts(allProducts);
-      } catch (error) {
-        console.error('Error loading products:', error);
+      } catch (err) {
+        console.error('Failed to fetch products:', err);
         document.getElementById('catalogue-container').innerHTML =
           '<p class="text-white text-center text-lg">Failed to load products. Please try again later.</p>';
       }
@@ -187,30 +192,135 @@
 
       const categories = ['Pots and Planters', 'Wall Decor', 'Clocks', 'Lighting'];
       categories.forEach(category => {
+        // build section and grid
         const section = document.createElement('section');
         section.innerHTML = `
-          <h3 class="text-3xl font-bold text-white mb-8 section-title">${category}</h3>
-          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-6" id="${category.replace(/\s+/g, '-').toLowerCase()}"></div>
+          <h3 class="text-3xl font-bold text-white mb-4 section-title">${category}</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-6" id="${slug(category)}"></div>
         `;
         container.appendChild(section);
 
-        const sectionGrid = section.querySelector('div');
-        const items = products.filter(p => p.category === category);
+        const grid = section.querySelector('div');
+        // get products for this category
+        let items = products.filter(p => p.category === category);
+
+        // apply saved order if exists
+        const key = `hc-order-${slug(category)}`;
+        const saved = localStorage.getItem(key);
+        if (saved) {
+          try {
+            const savedIds = JSON.parse(saved);
+            const map = new Map(items.map(it => [String(it.id), it]));
+            const ordered = [];
+            savedIds.forEach(id => {
+              if (map.has(String(id))) {
+                ordered.push(map.get(String(id)));
+                map.delete(String(id));
+              }
+            });
+            // append remaining
+            map.forEach(v => ordered.push(v));
+            items = ordered;
+          } catch (e) {
+            console.warn('Invalid saved order for', category);
+          }
+        }
+
+        // create cards
         items.forEach(item => {
           const card = document.createElement('div');
           card.className = 'card';
+          card.setAttribute('draggable', 'true');
+          card.dataset.id = item.id; // keep id for saving order
           card.innerHTML = `
             <img src="${item.image}" alt="${item.name}" class="w-full h-auto object-contain rounded-lg mb-3" />
             <h3 class="text-lg font-semibold">${item.name}</h3>
-            <p class="text-gray-600 mt-1">${item.price}</p>
+            <p class="text-gray-400 mt-1">${item.price}</p>
             <button class="mt-2 px-3 py-1.5 rounded-lg bg-[#093d39] text-white hover:bg-[#062e2b] transition text-sm">Add to Cart</button>
           `;
-          sectionGrid.appendChild(card);
+          grid.appendChild(card);
         });
+
+        // after populating grid attach listeners for DnD
+        attachDnDHandlers(grid);
       });
     }
 
-    // ---------- Search and Filter ----------
+    /* -------------------------
+       Drag & Drop
+       ------------------------- */
+    let draggedEl = null;
+
+    function attachDnDHandlers(grid) {
+      // cards inside
+      grid.querySelectorAll('.card').forEach(card => {
+        card.addEventListener('dragstart', handleDragStart);
+        card.addEventListener('dragend', handleDragEnd);
+      });
+
+      // grid-level listeners
+      grid.addEventListener('dragover', e => {
+        e.preventDefault();
+        const afterEl = getDragAfterElement(grid, e.clientY);
+        if (afterEl == null) {
+          // append to end
+          if (draggedEl && draggedEl.parentElement === grid) {
+            // do nothing if already last
+          } else if (draggedEl) {
+            grid.appendChild(draggedEl);
+          }
+        } else {
+          if (draggedEl && draggedEl !== afterEl) {
+            grid.insertBefore(draggedEl, afterEl);
+          }
+        }
+      });
+
+      grid.addEventListener('drop', e => {
+        e.preventDefault();
+        // after drop, persist order for this grid
+        saveOrderForGrid(grid);
+      });
+    }
+
+    function handleDragStart(e) {
+      draggedEl = this;
+      this.classList.add('dragging');
+      // set dataTransfer for some browsers
+      try { e.dataTransfer.setData('text/plain', this.dataset.id); } catch (err) {}
+    }
+
+    function handleDragEnd() {
+      if (this) this.classList.remove('dragging');
+      draggedEl = null;
+    }
+
+    function getDragAfterElement(container, y) {
+      const draggableElements = [...container.querySelectorAll('.card:not(.dragging)')];
+
+      return draggableElements.reduce((closest, child) => {
+        const box = child.getBoundingClientRect();
+        const offset = y - box.top - box.height / 2;
+        if (offset < 0 && offset > closest.offset) {
+          return { offset: offset, element: child };
+        } else {
+          return closest;
+        }
+      }, { offset: Number.NEGATIVE_INFINITY }).element;
+    }
+
+    function saveOrderForGrid(grid) {
+      const section = grid.closest('section');
+      if (!section) return;
+      const category = section.querySelector('.section-title').textContent.trim();
+      const ids = Array.from(grid.querySelectorAll('.card')).map(c => c.dataset.id);
+      const key = `hc-order-${slug(category)}`;
+      localStorage.setItem(key, JSON.stringify(ids));
+    }
+
+    /* -------------------------
+       Search & Filter
+       ------------------------- */
     const searchInput = document.getElementById('searchInput');
     const categoryFilter = document.getElementById('categoryFilter');
 
@@ -218,19 +328,31 @@
     categoryFilter.addEventListener('change', applyFilters);
 
     function applyFilters() {
-      const searchTerm = searchInput.value.toLowerCase();
-      const selectedCategory = categoryFilter.value;
-
+      const term = searchInput.value.trim().toLowerCase();
+      const selected = categoryFilter.value;
       const filtered = allProducts.filter(p => {
-        const matchesSearch = p.name.toLowerCase().includes(searchTerm);
-        const matchesCategory = selectedCategory === 'All' || p.category === selectedCategory;
-        return matchesSearch && matchesCategory;
+        const matchName = p.name.toLowerCase().includes(term);
+        const matchCategory = selected === 'All' || p.category === selected;
+        return matchName && matchCategory;
       });
-
       displayProducts(filtered);
+      // no need to call attachDnDHandlers separately because displayProducts attaches them
     }
 
+    // initial load
     loadProducts();
+
+  </script>
+
+  <!-- service worker registration (keeps as you had) -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(reg => console.log('SW registered:', reg.scope))
+          .catch(err => console.error('SW registration failed:', err));
+      });
+    }
   </script>
 </body>
 </html>
